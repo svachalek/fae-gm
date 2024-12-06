@@ -1,0 +1,3 @@
+[submodule "5e-database"]
+	path = 5e-database
+	url = https://github.com/5e-bits/5e-database.git

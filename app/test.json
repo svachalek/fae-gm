@@ -1,0 +1,44 @@
+{
+  "response": "Welcome to the adventurous world of J.R.R. Tolkien's Middle-earth, where the shadows loom ever larger, and the unexpected awaits around every corner. You take on the role of a brave character from the tale of *The Hobbit*. Your character is a loyal member of the company of dwarves, but now embarks on a side quest of their own!\n\n### Character Creation\nYou will be playing as **Balin**, a dwarven warrior known for his bravery and wisdom. Below are your character details:\n\n- **High Concept**: Dwarven Guardian of the Ancient Path\n- **Trouble**: Haunted by the past glories of Erebor\n- **Twist**: Wields a hidden magical axe, *Glintstone*. \n\n### Character Stats\n- **Careful**: +1  \n- **Clever**: +2  \n- **Flashy**: +0  \n- **Forceful**: +3  \n- **Quick**: +1  \n- **Sneaky**: +2  \n\n### Stunts\n1. **Guardian's Resolve**: When your courage is needed, you can roll *Forceful* to defend against fear effects.\n2. **Dwarven Tenacity**: Once per scene, you can reroll a failed *Careful* action involving traps or puzzles.\n\n### Stress Boxes\n- **Stress**: 3 boxes \n\nNow that you are Balin, your adventure begins as you receive a call to investigate strange happenings in the depths of Mirkwood. Rumors swirl about wandering shadow creatures preying on lost travelers. The party you were with has moved on, but you feel the compelling urge to uncover the truth. \n\n### Scenario Setup\nAs you tread the dim forest floor, the air thickens with an ominous silence. Ahead you see shadows shifting and hear distant rustling. It feels as if the forest itself is alive, watching you. \n\n**Clocks:**\n1. **Shadow Threats**: 0/6 (Progress clock for the dangers lurking in the forest)\n\nAre you ready to begin your quest or do you have anything else in mind? Let me know how you’d like to start!",
+  "scenario": "The Shadows of Mirkwood",
+  "scene": "Deep in the Mirkwood Forest",
+  "playerCharacter": {
+    "name": "Balin",
+    "aspects": [
+      { "name": "Dwarven Guardian of the Ancient Path", "freeInvocations": 0 },
+      { "name": "Haunted by the past glories of Erebor", "freeInvocations": 0 },
+      {
+        "name": "Wields a hidden magical axe, Glintstone",
+        "freeInvocations": 0
+      }
+    ],
+    "careful": 1,
+    "clever": 2,
+    "flashy": 0,
+    "forceful": 3,
+    "quick": 1,
+    "sneaky": 2,
+    "stunts": [
+      {
+        "name": "Guardian's Resolve",
+        "description": "When your courage is needed, you can roll Forceful to defend against fear effects."
+      },
+      {
+        "name": "Dwarven Tenacity",
+        "description": "Once per scene, you can reroll a failed Careful action involving traps or puzzles."
+      }
+    ],
+    "stress": { "numberOfBoxes": 3, "filledBoxes": 0 },
+    "mildConsequence": null,
+    "moderateConsequence": null,
+    "severeConsequence": null,
+    "fatePoints": 3
+  },
+  "npcs": [],
+  "situationAspects": [
+    { "name": "Ominous Silence", "freeInvocations": 0 },
+    { "name": "Shadows Watching", "freeInvocations": 0 }
+  ],
+  "compel": null,
+  "clocks": [{ "name": "Shadow Threats", "segments": 6, "filledSegments": 0 }]
+}

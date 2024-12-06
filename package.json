@@ -1,0 +1,31 @@
+{
+  "scripts": {
+    "start": "next start",
+    "rebuild": "next build",
+    "dev": "next dev"
+  },
+  "dependencies": {
+    "@langchain/langgraph": "^0.2.20",
+    "@langchain/langgraph-checkpoint": "^0.0.11",
+    "@langchain/ollama": "^0.1.2",
+    "@langchain/openai": "^0.3.14",
+    "chalk": "^5.3.0",
+    "langchain": "^0.3.6",
+    "next": "^15.0.3",
+    "pino": "^9.5.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-markdown": "^9.0.1",
+    "wordwrap": "^1.0.0",
+    "zod": "^3.23.8",
+    "zod-to-ts": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/dom-speech-recognition": "^0.0.4",
+    "@types/express": "^5.0.0",
+    "@types/react": "^18.3.12",
+    "@types/wordwrap": "^1.0.3",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3"
+  }
+}

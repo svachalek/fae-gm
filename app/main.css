@@ -1,0 +1,328 @@
+html,
+body {
+  height: 100%;
+  max-height: 100%;
+  margin: 0;
+}
+
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+header {
+  flex: 0 0 auto;
+  background-color: #e0e0e0;
+  box-shadow: 0 0.5em 1em #bebebe;
+  padding: 0.5em;
+  border-bottom-right-radius: 2em;
+}
+
+th,
+td {
+  padding: 0.2em 1em 0.2em 0;
+  margin: 0;
+}
+
+.scenario {
+  font-weight: bold;
+}
+
+main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.situation {
+  flex: 0 0 auto;
+  overflow: auto;
+  width: 20em;
+  padding: 1em 1em 1em 0;
+}
+
+.situation h1,
+.situation h2,
+.situation h3,
+.situation h4 {
+  margin-bottom: 0.25em;
+}
+
+.situation ul {
+  margin-top: 0;
+  padding: 0 0 0 1.5em;
+}
+
+.situtation li {
+  margin: 0;
+  padding: 0;
+}
+
+.situation h1:first-child,
+.situation h2:first-child,
+.situation h3:first-child,
+.situation h4:first-child,
+.situation p:first-child,
+.message:first-child {
+  margin-top: 0;
+}
+
+.situation p:last-child,
+.situation ul:last-child,
+.message:last-child {
+  margin-bottom: 0;
+}
+
+.aspect {
+  font-style: italic;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: start;
+  text-transform: capitalize;
+  width: 6em;
+}
+
+.main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.story {
+  flex: 0 1 auto;
+  padding: 1em;
+  overflow: auto;
+}
+
+.input {
+  flex: 0 0 auto;
+  padding: 0.5em 1em;
+}
+
+textarea {
+  appearance: none;
+  font-size: 100%;
+  width: 100%;
+  min-height: 2.25em;
+  resize: vertical;
+  border: none;
+}
+
+textarea,
+.message-human,
+.speech {
+  padding: 0.5em;
+  color: blue;
+  background-color: #f0f0ff;
+  border: 1px solid blue;
+  border-radius: 0.5em;
+  box-sizing: border-box;
+}
+
+#player_input {
+  display: flex;
+  flex-direction: row;
+}
+
+.speech {
+  appearance: none;
+  background-color: #f0f0ff;
+  border: 1px solid blue;
+  border-radius: 0.5em;
+  box-sizing: border-box;
+  margin-left: 0.5em;
+}
+
+.speech.listening {
+  background-color: yellow;
+}
+
+.message-human > p {
+  margin: 0;
+}
+
+.message-tool {
+  opacity: 0.5;
+}
+
+.box {
+  display: inline-block;
+  height: 16px;
+  border: 1px solid black;
+  margin-right: 0.25em;
+  vertical-align: bottom;
+}
+
+ul.consequences {
+  padding: 0;
+  list-style: none;
+}
+
+.dice_roll {
+  margin: 1em 0;
+}
+
+.dice_approach,
+.dice_rolltype {
+  text-transform: capitalize;
+}
+
+.die {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  width: 16px;
+  border: 1px solid black;
+  margin-right: 0.25em;
+  /* vertical-align: bottom; */
+  padding: 0.15em 0.15em 0.15em 0.2em;
+  border-radius: 0.25em;
+  background-color: #bebeff;
+  animation: pulse 2s ease-in-out alternate infinite;
+  transform: rotate(-20deg);
+}
+
+@keyframes pulse {
+  100% {
+    transform: rotate(20deg);
+  }
+}
+
+.bar {
+  border-left: 1px solid black;
+}
+
+.box {
+  width: 1em;
+  border-radius: 0.25em;
+}
+
+.box.filled {
+  background-color: gray;
+}
+
+.bar .box {
+  margin-right: 0;
+  border-radius: 0;
+  border-left-width: 0;
+}
+
+.bar .box:last-child {
+  border-radius: 0;
+  border-right-width: 0;
+  border-top-right-radius: 0.25em;
+  border-bottom-right-radius: 0.25em;
+  border-right-width: 1px;
+}
+
+.message {
+  margin: 1em 0;
+}
+
+.loading {
+  font-style: italic;
+  font-weight: bold;
+  animation: colorchange 8s infinite;
+}
+
+@keyframes colorchange {
+  0% {
+    color: blue;
+  }
+  50% {
+    color: orange;
+  }
+  100% {
+    color: blue;
+  }
+}
+
+.metadata {
+  font-size: 50%;
+  opacity: 0.5;
+}
+
+.character,
+.npc,
+.clock,
+.situation_aspects {
+  background-color: #e0e0e0;
+  box-shadow: 0.5em 0.5em 1em #bebebe;
+
+  /* border: 1px solid gray; */
+  border-radius: 1em;
+  padding: 0.5em 1em;
+  margin-bottom: 1em;
+}
+
+.portrait_container {
+  position: relative;
+  width: calc(100% + 0.5em);
+  margin: -0.25em;
+}
+
+.portrait {
+  width: 100%;
+}
+
+.portrait_frame {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  top: 0px;
+  bottom: 0px;
+  color: transparent;
+  box-shadow: inset 0 0 10px 10px #e0e0e0;
+  font-size: 80%;
+}
+
+.portrait_description {
+  flex: 1 1 auto;
+}
+
+.portrait_button {
+  appearance: none;
+  margin: 0.5em;
+  display: none;
+  border: 1px solid gray;
+  border-radius: 1em;
+}
+
+.portrait_generating {
+  margin: 0.5em;
+}
+
+.portrait_container:hover .portrait {
+  visibility: hidden;
+}
+
+.portrait_container:hover .portrait_button {
+  display: inline-block;
+}
+
+.portrait_container:hover .portrait_frame,
+.portrait_frame.no_image {
+  color: inherit;
+  background-color: #f0f0f0;
+}
+
+.portrait_placeholder {
+  aspect-ratio: 1/1;
+}
