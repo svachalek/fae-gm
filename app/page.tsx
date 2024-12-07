@@ -16,6 +16,7 @@ import Input from "./input";
 import "./main.css";
 import NPCSheet from "./npc_sheet";
 import Story from "./story";
+import Suggestions from "./suggestions";
 
 const initialMessages: Message[] = [
   {
@@ -27,7 +28,8 @@ const initialMessages: Message[] = [
 ];
 
 const initialSituation: Situation = {
-  response: "",
+  outcome: "",
+  suggestions: [],
   scenario: "Fate Accelerated Game Master",
   scene: "Getting Started",
   npcs: [],
@@ -138,15 +140,22 @@ export default function Page() {
       <main>
         <section className="main">
           <Story messages={messages} />
-          <Input
-            loading={loading}
-            prompt={
-              situation.compel
-                ? `Compel: ${situation.compel}`
-                : "What would you like to do?"
-            }
-            submitAction={submit}
-          />
+
+          {loading ? (
+            <div className="loading">
+              <img src="/pendulum.gif" height="12" width="12" /> Discovering
+              your fate...
+            </div>
+          ) : (
+            <div className="input">
+              <Suggestions submitAction={submit} situation={situation} />
+              <Input
+                prompt={"What would you like to do?"}
+                situation={situation}
+                submitAction={submit}
+              />
+            </div>
+          )}
         </section>
         {situation.playerCharacter ? (
           <section className="situation">

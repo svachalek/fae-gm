@@ -40,7 +40,7 @@ const ZJsonMessage = z.discriminatedUnion("type", [
   z.object({
     type: z.literal("ai"),
     content: z.string(),
-    response: z.string(), // we just pull out the message part to render efficiently
+    outcome: z.string(), // we just pull out the message part to render efficiently
     id: z.string(),
     toolCalls: ZToolCall.array().optional(),
   }),
@@ -146,7 +146,7 @@ async function send(
         return {
           type: "ai",
           content,
-          response: "",
+          outcome: "",
           id,
           toolCalls: (m as AIMessage).tool_calls?.map((tc) => ({
             id: tc.id ?? generateId(),
@@ -251,7 +251,7 @@ export async function sendMessage(
     for (const message of messages) {
       if (message.type === "ai" && message.content.length > 0) {
         // this has already passed validation so just cast it
-        message.response = (parseJson(message.content) as Situation).response;
+        message.outcome = (parseJson(message.content) as Situation).outcome;
       }
     }
     return {

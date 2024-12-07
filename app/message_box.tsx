@@ -41,7 +41,7 @@ export default function MessageBox({ message }: { message: Message }) {
   return (
     <div id={message.id} className={`message message-${message.type}`}>
       <Markdown>
-        {message.type === "ai" ? message.response : message.content}
+        {message.type === "ai" ? message.outcome : message.content}
       </Markdown>
       {/* {metadata ? (
         <div className="metadata">

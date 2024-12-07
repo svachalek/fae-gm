@@ -5,7 +5,15 @@ import { ZClock } from "./clock";
 import { ZNPC } from "./npc";
 
 export const ZSituation = z.object({
-  response: z.string().describe("Response to the player, in Markdown format."),
+  outcome: z
+    .string()
+    .describe(
+      "Outcome of the player's action, in Markdown format. This is also where you can put answers to questions or other out-of-game content.",
+    ),
+  suggestions: z
+    .string()
+    .array()
+    .describe("Possible actions the player can take, in Markdown format."),
   scenario: z
     .string()
     .optional()

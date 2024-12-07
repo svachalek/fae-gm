@@ -12,11 +12,13 @@
     --input-background-color: #44f;
     --input-border-color: #f0f0ff;
 
-    --dice-symbol-color: white;
+    --dice-symbol-color: #ff6;
     --dice-background-color: #33f;
     --dice-border-color: #55f;
 
+    --button-text-color: #black;
     --button-background-color: #999;
+    --button-border-color: #ccc;
   }
 }
 
@@ -34,11 +36,13 @@
     --input-background-color: #f0f0ff;
     --input-border-color: blue;
 
-    --dice-symbol-color: white;
+    --dice-symbol-color: #ff6;
     --dice-background-color: #33f;
-    --dice-border-color: #55f;
+    --dice-border-color: #66f;
 
-    --button-background-color: gray;
+    --button-text-color: #black;
+    --button-background-color: #ccc;
+    --button-border-color: #eee;
   }
 }
 
@@ -152,6 +156,37 @@ th {
   flex: 0 1 auto;
   padding: 1em;
   overflow: auto;
+}
+
+.suggestions {
+  margin-bottom: 0.5em;
+}
+.suggestions h4 {
+  margin: 0;
+}
+
+.suggestion {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.suggestion button {
+  width: 3em;
+  margin: 0.25em;
+  appearance: none;
+  color: var(--button-text-color);
+  background-color: var(--button-background-color);
+  border-color: var(--button-border-color);
+  border-radius: 1em;
+}
+.suggestion p {
+  margin: 0;
+}
+.suggestion.compel p {
+  color: orange;
+}
+.suggestion.compel button {
+  background-color: orange;
 }
 
 .input {

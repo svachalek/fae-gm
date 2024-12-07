@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Situation } from "../schema/situation";
 
 export default function Input({
-  loading,
   prompt,
+  situation,
   submitAction,
 }: {
-  loading: boolean;
   prompt: string;
+  situation: Situation;
   submitAction: (message: string) => void;
 }) {
   const [text, setText] = useState("");
@@ -25,6 +26,16 @@ export default function Input({
       if (isRecognizing) {
         recognition!.stop();
         setIsRecognizing(false);
+      }
+    } else if (event.key >= "1" && event.key <= "9" && text.length === 0) {
+      const index = Number(event.key) - 1;
+      if (situation.suggestions.length > index) {
+        document.onkeydown = null;
+        submitAction(situation.suggestions[index]);
+      }
+      if (event.key === "c" && situation.compel) {
+        document.onkeydown = null;
+        submitAction(situation.compel);
       }
     }
   };
@@ -64,41 +75,36 @@ export default function Input({
   };
 
   return (
-    <div className="input">
-      {loading ? (
-        <div className="loading">
-          <img src="/pendulum.gif" height="12" width="12" /> Discovering your
-          fate...
-        </div>
-      ) : (
-        <form id="player_input">
-          <textarea
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder={prompt}
-            onKeyDown={handleKeyDown}
-            autoFocus
-          />
-          {recognition ? (
-            <button
-              className={isRecognizing ? "speech listening" : "speech"}
-              type="button"
-              onClick={toggleSpeechRecognition}
-            >
-              <img
-                width="20px"
-                height="20px"
-                src={
-                  isRecognizing
-                    ? "/9023698_microphone_fill_icon.svg"
-                    : "/9025831_microphone_icon.svg"
-                }
-              />
-            </button>
-          ) : undefined}
-          <button type="submit" hidden />
-        </form>
-      )}
-    </div>
+    <>
+      <form id="player_input">
+        <textarea
+          value={text}
+          onChange={(e) => {
+            setText(e.target.value);
+          }}
+          placeholder={prompt}
+          onKeyDown={handleKeyDown}
+          autoFocus
+        />
+        {recognition ? (
+          <button
+            className={isRecognizing ? "speech listening" : "speech"}
+            type="button"
+            onClick={toggleSpeechRecognition}
+          >
+            <img
+              width="20px"
+              height="20px"
+              src={
+                isRecognizing
+                  ? "/9023698_microphone_fill_icon.svg"
+                  : "/9025831_microphone_icon.svg"
+              }
+            />
+          </button>
+        ) : undefined}
+        <button type="submit" hidden />
+      </form>
+    </>
   );
 }
