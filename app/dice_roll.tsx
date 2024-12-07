@@ -2,8 +2,8 @@ import { ZDiceResult } from "../schema/dice";
 import { Message } from "./chat";
 
 export default function DiceRoll({ message }: { message: Message }) {
-  const minusDie = <span className="die">➖</span>;
-  const plusDie = <span className="die">➕</span>;
+  const minusDie = <span className="die">-</span>;
+  const plusDie = <span className="die">+</span>;
   const blankDie = <span className="die">&nbsp;</span>;
   try {
     const json = JSON.parse(message.content);

@@ -1,3 +1,47 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #333;
+    --text-color: white;
+    --shadow-color: #000;
+    --border-color: white;
+
+    --aux-background-color: #666;
+    --aux-text-color: white;
+
+    --input-text-color: #f0f0ff;
+    --input-background-color: #44f;
+    --input-border-color: #f0f0ff;
+
+    --dice-symbol-color: white;
+    --dice-background-color: #33f;
+    --dice-border-color: #55f;
+
+    --button-background-color: #999;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: white;
+    --text-color: black;
+    --shadow-color: #bebebe;
+    --border-color: black;
+
+    --aux-background-color: #e0e0e0;
+    --aux-text-color: black;
+
+    --input-text-color: blue;
+    --input-background-color: #f0f0ff;
+    --input-border-color: blue;
+
+    --dice-symbol-color: white;
+    --dice-background-color: #33f;
+    --dice-border-color: #55f;
+
+    --button-background-color: gray;
+  }
+}
+
 html,
 body {
   height: 100%;
@@ -14,12 +58,15 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 header {
   flex: 0 0 auto;
-  background-color: #e0e0e0;
-  box-shadow: 0 0.5em 1em #bebebe;
+  background-color: var(--aux-background-color);
+  color: var(--aux-text-color);
+  box-shadow: 0 0.5em 1em var(--shadow-color);
   padding: 0.5em;
   border-bottom-right-radius: 2em;
 }
@@ -125,9 +172,9 @@ textarea,
 .message-human,
 .speech {
   padding: 0.5em;
-  color: blue;
-  background-color: #f0f0ff;
-  border: 1px solid blue;
+  color: var(--input-text-color);
+  background-color: var(--input-background-color);
+  border: 1px solid var(--input-text-color);
   border-radius: 0.5em;
   box-sizing: border-box;
 }
@@ -139,8 +186,8 @@ textarea,
 
 .speech {
   appearance: none;
-  background-color: #f0f0ff;
-  border: 1px solid blue;
+  background-color: var(--input-background-color);
+  border: 1px solid var(--input-text-color);
   border-radius: 0.5em;
   box-sizing: border-box;
   margin-left: 0.5em;
@@ -161,7 +208,7 @@ textarea,
 .box {
   display: inline-block;
   height: 16px;
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   margin-right: 0.25em;
   vertical-align: bottom;
 }
@@ -186,12 +233,17 @@ ul.consequences {
   justify-content: center;
   height: 16px;
   width: 16px;
-  border: 1px solid black;
+  border: 0.1em solid var(--dice-border-color);
   margin-right: 0.25em;
-  /* vertical-align: bottom; */
-  padding: 0.15em 0.15em 0.15em 0.2em;
+  padding: 0.15em 0.15em 0.2em 0.15em;
+  font-weight: 900;
   border-radius: 0.25em;
-  background-color: #bebeff;
+  color: var(--dice-symbol-color);
+  /* background-color: var(--dice-background-color); */
+  background: radial-gradient(
+    var(--dice-background-color),
+    var(--dice-border-color)
+  );
   animation: pulse 2s ease-in-out alternate infinite;
   transform: rotate(-20deg);
 }
@@ -203,7 +255,7 @@ ul.consequences {
 }
 
 .bar {
-  border-left: 1px solid black;
+  border-left: 1px solid var(--border-color);
 }
 
 .box {
@@ -212,7 +264,7 @@ ul.consequences {
 }
 
 .box.filled {
-  background-color: gray;
+  background-color: var(--button-background-color);
 }
 
 .bar .box {
@@ -260,10 +312,10 @@ ul.consequences {
 .npc,
 .clock,
 .situation_aspects {
-  background-color: #e0e0e0;
-  box-shadow: 0.5em 0.5em 1em #bebebe;
+  background-color: var(--aux-background-color);
+  color: var(--aux-text-color);
+  box-shadow: 0.5em 0.5em 1em var(--shadow-color);
 
-  /* border: 1px solid gray; */
   border-radius: 1em;
   padding: 0.5em 1em;
   margin-bottom: 1em;
@@ -289,7 +341,7 @@ ul.consequences {
   top: 0px;
   bottom: 0px;
   color: transparent;
-  box-shadow: inset 0 0 10px 10px #e0e0e0;
+  box-shadow: inset 0 0 10px 10px var(--aux-background-color);
   font-size: 80%;
 }
 
@@ -301,7 +353,7 @@ ul.consequences {
   appearance: none;
   margin: 0.5em;
   display: none;
-  border: 1px solid gray;
+  border: 1px solid var(--button-background-color);
   border-radius: 1em;
 }
 
@@ -320,7 +372,7 @@ ul.consequences {
 .portrait_container:hover .portrait_frame,
 .portrait_frame.no_image {
   color: inherit;
-  background-color: #f0f0f0;
+  background-color: var(--background-color);
 }
 
 .portrait_placeholder {
