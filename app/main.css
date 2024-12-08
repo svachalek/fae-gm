@@ -58,6 +58,12 @@ body {
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
+a,
+a:link,
+a:visited {
+  color: var(--text-color);
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -324,6 +330,8 @@ ul.consequences {
   font-style: italic;
   font-weight: bold;
   animation: colorchange 8s infinite;
+  text-align: center;
+  margin: 1em;
 }
 
 @keyframes colorchange {
