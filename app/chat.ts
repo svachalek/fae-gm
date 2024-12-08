@@ -66,7 +66,7 @@ function generateId() {
 }
 
 async function getInstructions(): Promise<BaseMessage[]> {
-  const gameInstructions = await readFile("prompts/play.md", "utf-8");
+  const gameInstructions = await readFile("prompts/instructions.md", "utf-8");
   const responseInstructions =
     `## Response Format\n\nRespond only as a JSON document, and strictly conform to the following TypeScript schema, paying attention to comments as additional requirements:\n` +
     printNode(zodToTs(ZSituation).node);

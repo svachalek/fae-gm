@@ -1,33 +1,29 @@
 import { z } from "zod";
 
-export const ZRollType = z.enum([
-  "attack",
-  "defend",
-  "overcome",
-  "create advantage",
-]);
-
-export const ZModifier = z.object({ name: z.string(), value: z.number() });
-
 export const ZRollDice = z.object({
-  rollType: ZRollType,
-  characterName: z
+  purpose: z
     .string()
-    .describe("the name of the player character or NPC who wants to roll"),
-  approach: z.string().describe("the approach being used here"),
-  difficulty: z.number(),
-  modifiers: ZModifier.array()
-    .min(1)
     .describe(
-      "modifiers from approach rating, skilled at/bad at ratings, invokes, stunts, etc",
+      `What will happen on a successful roll? Complete the sentence "Rolling to see if..."`,
     ),
+  influences: z
+    .object({
+      tag: z.string(),
+      value: z
+        .number()
+        .describe(
+          "a rating from -2 (strongly hindering the action) to +2 (strongly supporting the action)",
+        ),
+    })
+    .array(),
 });
 
 export const ZDiceResult = z
   .object({
     dice: z.number().array(),
     outcome: z.string(),
-    effects: z.string(),
+    credit: z.string(),
+    blame: z.string(),
   })
   .extend(ZRollDice.shape);
 

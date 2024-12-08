@@ -33,10 +33,6 @@ export default function Input({
         document.onkeydown = null;
         submitAction(situation.suggestions[index]);
       }
-      if (event.key === "c" && situation.compel) {
-        document.onkeydown = null;
-        submitAction(situation.compel);
-      }
     }
   };
 

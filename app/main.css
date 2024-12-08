@@ -137,8 +137,8 @@ main {
   margin-bottom: 0;
 }
 
-.aspect {
-  font-style: italic;
+.tag.inactive {
+  opacity: 50%;
 }
 
 table {
@@ -179,12 +179,12 @@ th {
 .suggestion button {
   flex: 0 0 auto;
   width: 3em;
-  margin: 0.25em;
+  margin: 0.25em 0.5em 0.25em 0.25em;
   appearance: none;
   color: var(--button-text-color);
   background-color: var(--button-background-color);
   border-color: var(--button-border-color);
-  border-radius: 1em;
+  border-radius: 0.25em;
 }
 .suggestion p {
   flex: 1 1 auto;
@@ -265,9 +265,27 @@ ul.consequences {
   margin: 1em 0;
 }
 
-.dice_approach,
-.dice_rolltype {
-  text-transform: capitalize;
+.dice_modifier {
+  margin: 0.5em 1em;
+}
+
+.red_pill,
+.green_pill {
+  display: inline-block;
+  text-align: center;
+  padding: 0.2em 0.5em;
+  border-radius: 0.7em;
+  width: 1.5em;
+}
+
+.red_pill {
+  background-color: orangered;
+  color: white;
+}
+
+.green_pill {
+  background-color: green;
+  color: white;
 }
 
 .die {
@@ -287,6 +305,9 @@ ul.consequences {
     var(--dice-background-color),
     var(--dice-border-color)
   );
+}
+
+.dice_result .die {
   animation: pulse 2s ease-in-out alternate infinite;
   transform: rotate(-20deg);
 }
@@ -356,7 +377,7 @@ ul.consequences {
 .character,
 .npc,
 .clock,
-.situation_aspects {
+.scene {
   background-color: var(--aux-background-color);
   color: var(--aux-text-color);
   box-shadow: 0.5em 0.5em 1em var(--shadow-color);
@@ -364,6 +385,10 @@ ul.consequences {
   border-radius: 1em;
   padding: 0.5em 1em;
   margin-bottom: 1em;
+}
+
+.character ul {
+  margin-top: 0.5em;
 }
 
 .portrait_container {

@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useReducer, useState } from "react";
+import Markdown from "react-markdown";
 import { Situation } from "../schema/situation";
-import AspectDisplay from "./aspect_display";
 import CharacterSheet from "./character_sheet";
 import {
   generateImage,
@@ -11,18 +11,17 @@ import {
   saveGame,
   sendMessage,
 } from "./chat";
-import ClockDisplay from "./clock_display";
 import Input from "./input";
 import "./main.css";
-import NPCSheet from "./npc_sheet";
 import Story from "./story";
 import Suggestions from "./suggestions";
+import TagDisplay from "./tag_display";
 
 const initialMessages: Message[] = [
   {
     id: "greeting",
     type: "system",
-    content: `Welcome! I am your Game Master for [Fate Accelerated](https://evilhat.com/product/fate-accelerated-edition/). 
+    content: `Welcome! I am your Game Master for Tagz. 
     I can answer questions about the game or just get started. We can create a scenario and a character for you, or just ask me to Quick Start a game and I'll get right into the action.`,
   },
 ];
@@ -30,12 +29,9 @@ const initialMessages: Message[] = [
 const initialSituation: Situation = {
   outcome: "",
   suggestions: [],
-  scenario: "Fate Accelerated Game Master",
-  scene: "Getting Started",
+  scenario: "Tagz Game Master",
+  scene: { name: "Getting Started", description: "", tags: [] },
   npcs: [],
-  situationAspects: [],
-  clocks: [],
-  compel: "",
 };
 
 function incrementVersion(url: string): string {
@@ -95,7 +91,7 @@ export default function Page() {
         versionedName,
         `Painting of a fictional person in a realistic style. Show their face, waist, and knees. Rich color palettes, dramatic lighting, dynamic composition. ` +
           ` Subject: ${description}` +
-          ` Setting: ${situation.scenario}, ${situation.scene}`,
+          ` Setting: ${situation.scenario}, ${situation.scene?.name} ${situation.scene?.description}`,
       )
         .then((imageUrl) => addImages({ [name]: imageUrl }))
         .catch((error) => console.error(error));
@@ -135,7 +131,7 @@ export default function Page() {
     <>
       <header>
         <span className="scenario">{situation.scenario}</span>{" "}
-        <span className="scene">{situation.scene}</span>
+        <span className="scene_name">{situation.scene?.name}</span>
       </header>
       <main>
         <section className="main">
@@ -161,25 +157,23 @@ export default function Page() {
               imageUrl={images[situation.playerCharacter.name]}
               regenerateImage={generatePortrait}
             />
-            {situation.situationAspects.length > 0 ? (
-              <div className="situation_aspects">
-                <h4>Situation Aspects</h4>
+            {situation.scene ? (
+              <div className="scene">
+                <h3>Scene: {situation.scene.name}</h3>
+                <Markdown>{situation.scene.description}</Markdown>
                 <ul>
-                  {situation.situationAspects.map((aspect, index) => (
+                  {situation.scene.tags.map((aspect, index) => (
                     <li key={index}>
-                      <AspectDisplay aspect={aspect} />
+                      <TagDisplay tag={aspect} />
                     </li>
                   ))}
                 </ul>
               </div>
             ) : null}
-            {situation.clocks.map((clock) => (
-              <ClockDisplay key={clock.name} clock={clock} />
-            ))}
             {situation.npcs.map((npc, index) => (
-              <NPCSheet
+              <CharacterSheet
                 key={npc.name + index}
-                npc={npc}
+                character={npc}
                 imageUrl={images[npc.name]}
                 regenerateImage={generatePortrait}
               />

@@ -1,4 +1,4 @@
-# Fate Accelerated Game Master
+# Tagz Game Master
 
 ## Introduction
 
