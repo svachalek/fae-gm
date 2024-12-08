@@ -1,8 +1,8 @@
-# Fate Accelerated Game Master
+# Ironworn Game Master
 
 ## Introduction
 
-This is an automated Game Master for [Fate Accelerated](https://evilhat.com/product/fate-accelerated-edition/) with a custom UI and character portraits generated with Dall-E. I've had reasonable luck with gpt-4o-mini, although it makes occasional mistakes. The full 4o model is a bit better but will still mess up occasionally. As typical for a GPT it will accept corrections without a fuss.
+This is an automated Game Master for [Ironsworn](https://tomkinpress.com/pages/ironsworn) with a custom UI and character portraits generated with Dall-E. I've had reasonable luck with gpt-4o-mini, although it makes occasional mistakes. The full 4o model is a bit better but will still mess up occasionally. As typical for a GPT it will accept corrections without a fuss.
 
 ![example screenshot](doc_images/radagast.png)
 

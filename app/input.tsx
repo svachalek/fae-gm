@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Situation } from "../schema/situation";
+import { GameState } from "../schema/game";
 
 export default function Input({
   prompt,
@@ -9,7 +9,7 @@ export default function Input({
   submitAction,
 }: {
   prompt: string;
-  situation: Situation;
+  situation: GameState;
   submitAction: (message: string) => void;
 }) {
   const [text, setText] = useState("");
@@ -32,10 +32,6 @@ export default function Input({
       if (situation.suggestions.length > index) {
         document.onkeydown = null;
         submitAction(situation.suggestions[index]);
-      }
-      if (event.key === "c" && situation.compel) {
-        document.onkeydown = null;
-        submitAction(situation.compel);
       }
     }
   };

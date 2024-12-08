@@ -13,7 +13,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "path";
 import { z, ZodSchema } from "zod";
 import { printNode, zodToTs } from "zod-to-ts";
-import { Situation, ZSituation } from "../schema/situation";
+import { GameState, GameStateSchema } from "../schema/game";
 import logger from "../src/logger";
 import { graph } from "../src/model";
 
@@ -56,7 +56,7 @@ export type Message = z.infer<typeof ZJsonMessage>;
 
 export interface Updates {
   messages: Message[];
-  situation: Situation;
+  situation: GameState;
 }
 
 let sentInstructions = false;
@@ -69,7 +69,7 @@ async function getInstructions(): Promise<BaseMessage[]> {
   const gameInstructions = await readFile("prompts/play.md", "utf-8");
   const responseInstructions =
     `## Response Format\n\nRespond only as a JSON document, and strictly conform to the following TypeScript schema, paying attention to comments as additional requirements:\n` +
-    printNode(zodToTs(ZSituation).node);
+    printNode(zodToTs(GameStateSchema).node);
   return [
     new SystemMessage(gameInstructions),
     new SystemMessage(responseInstructions),
@@ -227,7 +227,7 @@ export async function request<T extends ZodSchema>(
 
 export async function sendMessage(
   message: string,
-  situation: Situation,
+  situation: GameState,
 ): Promise<Updates> {
   if (message.startsWith("/")) {
     switch (message) {
@@ -247,11 +247,11 @@ export async function sendMessage(
         };
     }
   } else {
-    const [messages, newSituation] = await request(ZSituation, message);
+    const [messages, newSituation] = await request(GameStateSchema, message);
     for (const message of messages) {
       if (message.type === "ai" && message.content.length > 0) {
         // this has already passed validation so just cast it
-        message.outcome = (parseJson(message.content) as Situation).outcome;
+        message.outcome = (parseJson(message.content) as GameState).outcome;
       }
     }
     return {
@@ -263,7 +263,7 @@ export async function sendMessage(
 
 const ZSaveGame = z.object({
   messages: ZJsonMessage.array(),
-  situation: ZSituation,
+  situation: GameStateSchema,
   images: z.record(z.string()),
 });
 

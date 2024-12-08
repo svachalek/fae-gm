@@ -1,8 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useReducer, useState } from "react";
-import { Situation } from "../schema/situation";
-import AspectDisplay from "./aspect_display";
+import { GameState } from "../schema/game";
 import CharacterSheet from "./character_sheet";
 import {
   generateImage,
@@ -11,10 +10,8 @@ import {
   saveGame,
   sendMessage,
 } from "./chat";
-import ClockDisplay from "./clock_display";
 import Input from "./input";
 import "./main.css";
-import NPCSheet from "./npc_sheet";
 import Story from "./story";
 import Suggestions from "./suggestions";
 
@@ -22,20 +19,21 @@ const initialMessages: Message[] = [
   {
     id: "greeting",
     type: "system",
-    content: `Welcome! I am your Game Master for [Fate Accelerated](https://evilhat.com/product/fate-accelerated-edition/). 
+    content: `Welcome! I am your Game Master for [Ironsworn](https://tomkinpress.com/pages/ironsworn). 
     I can answer questions about the game or just get started. We can create a scenario and a character for you, or just ask me to Quick Start a game and I'll get right into the action.`,
   },
 ];
 
-const initialSituation: Situation = {
+const initialSituation: GameState = {
   outcome: "",
   suggestions: [],
-  scenario: "Fate Accelerated Game Master",
+  scenario: "Ironsworn Game Master",
   scene: "Getting Started",
-  npcs: [],
-  situationAspects: [],
-  clocks: [],
-  compel: "",
+  character: undefined,
+  vows: [],
+  connections: [],
+  inventory: [],
+  progress_tracks: [],
 };
 
 function incrementVersion(url: string): string {
@@ -116,14 +114,9 @@ export default function Page() {
   }, []);
 
   useEffect(() => {
-    const pc = situation.playerCharacter;
+    const pc = situation.character;
     if (pc && !images[pc.name]) {
       generatePortrait(pc.name, pc.physicalDescription);
-    }
-    for (const npc of situation.npcs) {
-      if (!images[npc.name]) {
-        generatePortrait(npc.name, npc.physicalDescription);
-      }
     }
   }, [situation]);
 
@@ -154,36 +147,13 @@ export default function Page() {
             </div>
           )}
         </section>
-        {situation.playerCharacter ? (
+        {situation.character ? (
           <section className="situation">
             <CharacterSheet
-              character={situation.playerCharacter}
-              imageUrl={images[situation.playerCharacter.name]}
+              character={situation.character}
+              imageUrl={images[situation.character.name]}
               regenerateImage={generatePortrait}
             />
-            {situation.situationAspects.length > 0 ? (
-              <div className="situation_aspects">
-                <h4>Situation Aspects</h4>
-                <ul>
-                  {situation.situationAspects.map((aspect, index) => (
-                    <li key={index}>
-                      <AspectDisplay aspect={aspect} />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-            {situation.clocks.map((clock) => (
-              <ClockDisplay key={clock.name} clock={clock} />
-            ))}
-            {situation.npcs.map((npc, index) => (
-              <NPCSheet
-                key={npc.name + index}
-                npc={npc}
-                imageUrl={images[npc.name]}
-                regenerateImage={generatePortrait}
-              />
-            ))}
           </section>
         ) : undefined}
       </main>
