@@ -142,10 +142,7 @@ export default function Page() {
           <Story messages={messages} />
 
           {loading ? (
-            <div className="loading">
-              <img src="/pendulum.gif" height="12" width="12" /> Discovering
-              your fate...
-            </div>
+            <div className="loading">Discovering your fate...</div>
           ) : (
             <div className="input">
               <Suggestions submitAction={submit} situation={situation} />

@@ -58,6 +58,12 @@ body {
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
+a,
+a:link,
+a:visited {
+  color: var(--text-color);
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -171,6 +177,7 @@ th {
   align-items: center;
 }
 .suggestion button {
+  flex: 0 0 auto;
   width: 3em;
   margin: 0.25em;
   appearance: none;
@@ -180,6 +187,7 @@ th {
   border-radius: 1em;
 }
 .suggestion p {
+  flex: 1 1 auto;
   margin: 0;
 }
 .suggestion.compel p {
@@ -324,6 +332,8 @@ ul.consequences {
   font-style: italic;
   font-weight: bold;
   animation: colorchange 8s infinite;
+  text-align: center;
+  margin: 1em;
 }
 
 @keyframes colorchange {
